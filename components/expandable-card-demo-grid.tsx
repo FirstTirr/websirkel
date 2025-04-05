@@ -4,7 +4,7 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
-export function MemberList() {
+export default function ExpandableCardDemo() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
     null
   );
@@ -205,7 +205,7 @@ const cards = [
   {
     description: "Lana Del Rey",
     title: "Summertime Sadness",
-    src: "/404.png",
+    src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
     ctaText: "Visit",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -228,7 +228,7 @@ const cards = [
   {
     description: "Babbu Maan",
     title: "Mitran Di Chhatri",
-    src: "/404.png",
+    src: "https://assets.aceternity.com/demos/babbu-maan.jpeg",
     ctaText: "Visit",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -251,7 +251,7 @@ const cards = [
   {
     description: "Metallica",
     title: "For Whom The Bell Tolls",
-    src: "/404.png",
+    src: "https://assets.aceternity.com/demos/metallica.jpeg",
     ctaText: "Visit",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -273,7 +273,7 @@ const cards = [
   {
     description: "Lord Himesh",
     title: "Aap Ka Suroor",
-    src: "404.png",
+    src: "https://assets.aceternity.com/demos/aap-ka-suroor.jpeg",
     ctaText: "Visit",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
