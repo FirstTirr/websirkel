@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import RotatingText from "./magicui/rotating-text";
 import { ScratchToReveal } from "./magicui/scratch-to-reveal";
 import { ShimmerButton } from "./magicui/shimmer-button";
@@ -7,6 +8,7 @@ import { TextAnimate } from "./magicui/text-animate";
 import { PinContainer } from "./ui/3d-pin";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
 import Carousel from "./ui/carousel";
+import { AnimatePresence, motion } from "framer-motion";
 
 const slideData = [
   {
@@ -120,6 +122,46 @@ const people = [
 ];
 
 const Hero = () => {
+  const [expandedMap, setExpandedMap] = useState(false);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  // Handle escape key and body scroll
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setExpandedMap(false);
+      }
+    };
+
+    if (expandedMap) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleEscKey);
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+      window.removeEventListener("keydown", handleEscKey);
+    };
+  }, [expandedMap]);
+
+  // Handle outside click
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (mapRef.current && !mapRef.current.contains(event.target as Node)) {
+        setExpandedMap(false);
+      }
+    };
+
+    if (expandedMap) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [expandedMap]);
   return (
     <>
       <div className="relative flex flex-col items-center min-h-screen min-w-full text-center dark:text-white">
@@ -211,37 +253,142 @@ const Hero = () => {
             </div>
           </div>
 
+
           {/* maps */}
-          <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-90 -mt-11">
-            <PinContainer
-              title="Our Location"
-              href="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            >
-              <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-                <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-                  TKP Location
-                </h3>
-                <div className="!m-0 !p-0 w-full h-[16rem] overflow-hidden rounded-lg">
-                  <iframe
-                    src="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen={true}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-lg"
-                  ></iframe>
+          <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-50 -mt-11">
+            <div className="relative group cursor-pointer">
+              <PinContainer
+                href="#"
+              >
+                <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
+                  <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
+                    TKP Location
+                  </h3>
+                  <div className="!m-0 !p-0 w-full h-[16rem] overflow-hidden rounded-lg relative">
+                    {/* Expand button - appears on hover */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpandedMap(true);
+                        }}
+                        className="px-4 py-2 bg-white/90 dark:bg-slate-800/90 rounded-full text-black dark:text-white text-sm font-medium transition-transform hover:scale-105 flex items-center gap-2"
+                      >
+                        <span>Expand</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <polyline points="9 21 3 21 3 15"></polyline>
+                          <line x1="21" y1="3" x2="14" y2="10"></line>
+                          <line x1="3" y1="21" x2="10" y2="14"></line>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <iframe
+                      src="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen={true}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="rounded-lg"
+                    ></iframe>
+                  </div>
+                  <div className="text-xs mt-2 text-center text-slate-300">
+                    PJ22+X3G, Tungka, Situjuah Limo Nagari, Lima Puluh Kota,
+                    West Sumatra
+                  </div>
                 </div>
-                <div className="text-xs mt-2 text-center text-slate-300">
-                  PJ22+X3G, Tungka, Situjuah Limo Nagari, Lima Puluh Kota, West
-                  Sumatra
-                </div>
-              </div>
-            </PinContainer>
+              </PinContainer>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Expanded map overlay */}
+      <AnimatePresence>
+        {expandedMap && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/70 z-50"
+              onClick={() => setExpandedMap(false)}
+            />
+
+            <motion.div
+              ref={mapRef}
+              layoutId="map-container"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+            >
+              <motion.div
+                className="bg-slate-900 rounded-2xl w-full max-w-[50rem] h-[80vh] overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative w-full h-full">
+                  {/* Close button */}
+                  <button
+                    onClick={() => setExpandedMap(false)}
+                    className="absolute top-4 right-4 z-10 bg-white/90 dark:bg-slate-800/90 rounded-full p-2 text-black dark:text-white"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M18 6L6 18" />
+                      <path d="M6 6L18 18" />
+                    </svg>
+                  </button>
+
+                  <div className="p-8 h-full flex flex-col">
+                    <h2 className="text-2xl font-bold text-white mb-4">
+                      TKP Location
+                    </h2>
+                    <div className="flex-1 w-full h-full rounded-lg overflow-hidden">
+                      <iframe
+                        src="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen={true}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="rounded-lg"
+                      ></iframe>
+                    </div>
+                    <div className="text-sm mt-4 text-center text-slate-300">
+                      PJ22+X3G, Tungka, Situjuah Limo Nagari, Lima Puluh Kota,
+                      West Sumatra
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
