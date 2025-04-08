@@ -4,6 +4,7 @@ import RotatingText from "./magicui/rotating-text";
 import { ScratchToReveal } from "./magicui/scratch-to-reveal";
 import { ShimmerButton } from "./magicui/shimmer-button";
 import { TextAnimate } from "./magicui/text-animate";
+import { PinContainer } from "./ui/3d-pin";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
 import Carousel from "./ui/carousel";
 
@@ -104,14 +105,24 @@ const people = [
     designation: "Data Scientist",
     image: "/smk.jpg",
   },
+  {
+    id: 9,
+    name: "atha",
+    designation: "Data Scientist",
+    image: "/smk.jpg",
+  },
+  {
+    id: 10,
+    name: "bodi",
+    designation: "Data Scientist",
+    image: "/smk.jpg",
+  },
 ];
 
 const Hero = () => {
   return (
     <>
-      {/* Full screen container with better spacing distribution */}
       <div className="relative flex flex-col items-center min-h-screen min-w-full text-center dark:text-white">
-        {/* Top section with fixed spacing */}
         <div className="w-full pt-16 md:pt-20">
           <h1 className="flex justify-center flex-wrap items-baseline text-5xl md:text-6xl font-bold text-gray-950 dark:text-white">
             <span>
@@ -132,7 +143,6 @@ const Hero = () => {
           </h1>
         </div>
 
-        {/* Text section - preserved existing styles */}
         <div className="w-full px-4 sm:px-6 md:px-8 max-w-[100%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto mt-8">
           <TextAnimate
             by="character"
@@ -164,40 +174,71 @@ const Hero = () => {
           </TextAnimate>
         </div>
 
-        {/* Button - preserved existing styles */}
         <ShimmerButton className="shadow-2xl mt-8 dark:bg-gray-800">
           <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
             About Us
           </span>
         </ShimmerButton>
 
-        <div className="flex flex-row items-center justify-center mb-1 w-full mt-12 flex-wrap">
+        {/* AnimatedTooltip with proper mobile padding */}
+        <div className="flex flex-row items-center justify-center mb-1 w-full mt-12 flex-wrap px-4 sm:px-6 md:px-8">
           <AnimatedTooltip items={people} />
         </div>
 
-        {/* Row container for ScratchToReveal and Carousel - reordered */}
-        <div className="w-full flex-1 flex flex-col md:flex-row md:items-center md:justify-start px-4 md:px-0 mt-8 mb-8">
-          {/* ScratchToReveal container - now first/left */}
-<div className="w-full md:w-auto flex justify-center md:justify-start items-center mb-8 md:-mb-24 md:ml-80">
-  <div className="flex flex-col items-center">
-    <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">Scratch For Our Logo👇</p>
-    <ScratchToReveal
-      width={280}
-      height={280}
-      minScratchPercentage={70}
-      className="flex items-center justify-center overflow-hidden rounded-2xl border-2 bg-gray-100 shadow-lg"
-      gradientColors={["#A97CF8", "#F38CB8", "#FDCC92"]}
-    >
-      <p className="text-9xl">logo tkp</p>
-    </ScratchToReveal>
-  </div>
-</div>
+        <div className="w-full flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-start px-4 lg:px-0 -mt-1 mb-8">
+          {/* ScratchToReveal container */}
+          <div className="w-full lg:w-auto flex justify-center lg:justify-start items-center mb-16  lg:ml-80">
+            <div className="flex flex-col items-center">
+              <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">
+                Scratch For Our Logo👇
+              </p>
+              <ScratchToReveal
+                width={280}
+                height={280}
+                minScratchPercentage={70}
+                className="flex items-center justify-center overflow-hidden rounded-2xl border-2 bg-gray-100 shadow-lg"
+                gradientColors={["#A97CF8", "#F38CB8", "#FDCC92"]}
+              >
+                <p className="text-9xl">logo tkp</p>
+              </ScratchToReveal>
+            </div>
+          </div>
 
-          {/* Carousel container - now second/right */}
-          <div className="w-full md:w-[50%] flex justify-center items-center md:absolute md:left-1/2 md:transform md:-translate-x-1/2 mt-48">
+          {/* Carousel container */}
+          <div className="w-full lg:w-[50%] flex justify-center items-center lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 mt-8 lg:mt-48">
             <div className="overflow-hidden max-w-3xl h-[calc(100vh-380px)] min-h-[300px]">
               <Carousel slides={slideData} />
             </div>
+          </div>
+
+          {/* maps */}
+          <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-90 -mt-11">
+            <PinContainer
+              title="Our Location"
+              href="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            >
+              <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
+                <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
+                  TKP Location
+                </h3>
+                <div className="!m-0 !p-0 w-full h-[16rem] overflow-hidden rounded-lg">
+                  <iframe
+                    src="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-lg"
+                  ></iframe>
+                </div>
+                <div className="text-xs mt-2 text-center text-slate-300">
+                  PJ22+X3G, Tungka, Situjuah Limo Nagari, Lima Puluh Kota, West
+                  Sumatra
+                </div>
+              </div>
+            </PinContainer>
           </div>
         </div>
       </div>
