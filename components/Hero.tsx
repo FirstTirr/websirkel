@@ -9,6 +9,9 @@ import { PinContainer } from "./ui/3d-pin";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
 import Carousel from "./ui/carousel";
 import { AnimatePresence, motion } from "framer-motion";
+// Import Vanta
+import * as THREE from "three";
+import RINGS from "vanta/dist/vanta.rings.min";
 
 const slideData = [
   {
@@ -103,7 +106,7 @@ const people = [
   },
   {
     id: 8,
-    name: "farhan",
+    name: "bodi",
     designation: "Data Scientist",
     image: "/smk.jpg",
   },
@@ -124,6 +127,33 @@ const people = [
 const Hero = () => {
   const [expandedMap, setExpandedMap] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+
+  // Initialize Vanta effect
+  useEffect(() => {
+    if (!vantaEffect && vantaRef.current) {
+      setVantaEffect(
+        RINGS({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          backgroundColor: 0x0, // You can adjust this
+          color: 0x3f83ff, // You can adjust this
+        })
+      );
+    }
+
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
 
   // Handle escape key and body scroll
   useEffect(() => {
@@ -162,8 +192,12 @@ const Hero = () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [expandedMap]);
+
   return (
     <>
+      {/* Vanta.js background container */}
+      <div ref={vantaRef} className="fixed inset-0 -z-10" />
+
       <div className="relative flex flex-col items-center min-h-screen min-w-full text-center dark:text-white">
         <div className="w-full pt-16 md:pt-20">
           <h1 className="flex justify-center flex-wrap items-baseline text-5xl md:text-6xl font-bold text-gray-950 dark:text-white">
@@ -223,7 +257,7 @@ const Hero = () => {
         </ShimmerButton>
 
         {/* AnimatedTooltip with proper mobile padding */}
-        <div className="flex flex-row items-center justify-center mb-1 w-full mt-12 flex-wrap px-4 sm:px-6 md:px-8">
+        <div className="flex flex-row items-center justify-center mb-4 w-full mt-12 flex-wrap px-5 sm:px-6 md:px-8">
           <AnimatedTooltip items={people} />
         </div>
 
@@ -253,13 +287,10 @@ const Hero = () => {
             </div>
           </div>
 
-
           {/* maps */}
           <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-50 -mt-11">
             <div className="relative group cursor-pointer">
-              <PinContainer
-                href="#"
-              >
+              <PinContainer href="#">
                 <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
                   <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
                     TKP Location
