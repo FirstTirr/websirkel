@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 // Import Vanta
 import * as THREE from "three";
 import RINGS from "vanta/dist/vanta.rings.min";
+import { SmoothCursor } from "./magicui/smootCursor";
 
 const slideData = [
   {
@@ -37,27 +38,27 @@ const slideData = [
   {
     title: "foto ramses",
     button: "Explore Component",
-    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaW90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     title: "foto arjuna",
     button: "Explore Component",
-    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaW90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     title: "foto atha",
     button: "Explore Component",
-    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaW90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     title: "foto vino",
     button: "Explore Component",
-    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaW90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     title: "foto bodi",
     button: "Explore Component",
-    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaW90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -118,7 +119,7 @@ const people = [
   },
   {
     id: 10,
-    name: "bodi",
+    name: "ghani",
     designation: "Data Scientist",
     image: "/smk.jpg",
   },
@@ -140,18 +141,32 @@ const Hero = () => {
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
+          minHeight: window.innerHeight,
+          minWidth: window.innerWidth,
           scale: 1.0,
           scaleMobile: 1.0,
-          backgroundColor: 0x0, // You can adjust this
-          color: 0x3f83ff, // You can adjust this
+          backgroundColor: 0x0,
+          color: 0x3f83ff,
+          backgroundAlpha: 1,
+          maxDistance: 25.0,
+          size: 1.5,
+          waveHeight: 0.5, // Adjust this for visual appeal
         })
       );
     }
 
+    // Handle window resize
+    const handleResize = () => {
+      if (vantaEffect) {
+        vantaEffect.resize();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
       if (vantaEffect) vantaEffect.destroy();
+      window.removeEventListener("resize", handleResize);
     };
   }, [vantaEffect]);
 
@@ -196,11 +211,22 @@ const Hero = () => {
   return (
     <>
       {/* Vanta.js background container */}
-      <div ref={vantaRef} className="fixed inset-0 -z-10" />
+      <div
+        ref={vantaRef}
+        className="fixed top-0 left-0 w-screen h-screen -z-10 overflow-hidden"
+        style={{
+          position: "fixed",
+          margin: 0,
+          padding: 0,
+        }}
+      />
 
-      <div className="relative flex flex-col items-center min-h-screen min-w-full text-center dark:text-white">
+      {/* SmoothCursor should be a top-level component */}
+      <SmoothCursor />
+
+      <div className="relative flex flex-col items-center min-h-screen w-full max-w-full overflow-hidden text-center dark:text-white">
         <div className="w-full pt-16 md:pt-20">
-          <h1 className="flex justify-center flex-wrap items-baseline text-5xl md:text-6xl font-bold text-gray-950 dark:text-white">
+          <h1 className="flex justify-center flex-wrap items-baseline text-5xl md:text-6xl font-bold text-white">
             <span>
               <span className="text-blue-400">Titik</span> Kumpul
             </span>
@@ -257,12 +283,20 @@ const Hero = () => {
         </ShimmerButton>
 
         {/* AnimatedTooltip with proper mobile padding */}
-        <div className="flex flex-row items-center justify-center mb-4 w-full mt-12 flex-wrap px-5 sm:px-6 md:px-8">
+        <div className="flex flex-row items-center justify-center mb-4 w-full mt-10 flex-wrap px-5 sm:px-6 md:px-8">
           <AnimatedTooltip items={people} />
         </div>
 
-        <div className="w-full flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-start px-4 lg:px-0 -mt-1 mb-8">
+        <div className="w-full flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-start px-4 lg:px-0 -mt-4 mb-8">
           {/* ScratchToReveal container */}
+
+          {/* Carousel container */}
+          <div className="w-full lg:w-[50%] flex justify-center items-center lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 mt-8 lg:mt-48">
+            <div className="overflow-hidden max-w-3xl h-[calc(100vh-380px)] min-h-[300px]">
+              <Carousel slides={slideData} />
+            </div>
+          </div>
+
           <div className="w-full lg:w-auto flex justify-center lg:justify-start items-center mb-16  lg:ml-80">
             <div className="flex flex-col items-center">
               <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">
@@ -279,14 +313,6 @@ const Hero = () => {
               </ScratchToReveal>
             </div>
           </div>
-
-          {/* Carousel container */}
-          <div className="w-full lg:w-[50%] flex justify-center items-center lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 mt-8 lg:mt-48">
-            <div className="overflow-hidden max-w-3xl h-[calc(100vh-380px)] min-h-[300px]">
-              <Carousel slides={slideData} />
-            </div>
-          </div>
-
           {/* maps */}
           <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-50 -mt-11">
             <div className="relative group cursor-pointer">
