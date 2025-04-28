@@ -18,8 +18,7 @@ export default function Footer() {
               </h3>
             </div>
             <p className="text-sm text-gray-400 max-w-xs">
-              Sekelompok remaja yang berdedikasi untuk mengembangkan
-              potensi diri dan berinovasi dalam bidang teknologi.
+            A group of teenagers dedicated to developing their potential and innovating in the field of technology.
             </p>
           </div>
 
@@ -64,43 +63,40 @@ export default function Footer() {
 
           {/* Achievements Section */}
           <div className="space-y-4">
-            <h4 className="text-lg font-medium">Pencapaian Kami</h4>
+            <h4 className="text-2xl font-medium text-center">Our Achievements</h4>
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-[#1a2233] p-4 rounded-md text-center">
-                <p className="text-2xl font-bold text-blue-400">
+                <p className="text-2xl font-bold">
                   <NumberTicker
                     value={9}
-                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-black dark:text-white"
+                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-blue-400 dark:text-cyan-400"
                   />
                 </p>
-                <p className="text-xs text-gray-400">Anggota Aktif</p>
+                <p className="text-xl text-gray-400">Active Members</p>
               </div>
               <div className="bg-[#1a2233] p-4 rounded-md text-center">
-                <p className="text-2xl font-bold text-blue-400">
+                <p className="text-2xl font-bold">
                   <NumberTicker
                     value={2025}
-                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-black dark:text-white"
+                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-blue-400 dark:text-cyan-400"
                   />
                 </p>
-                <p className="text-xs text-gray-400">Tahun Dibentuk</p>
+                <p className="text-xl text-gray-400">Year Formed</p>
               </div>
               <div className="bg-[#1a2233] p-4 rounded-md text-center">
-                <p className="text-2xl font-bold text-blue-400">
+                <p className="text-2xl font-bold">
                   <NumberTicker
                     value={0}
-                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-black dark:text-white"
+                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-blue-500 dark:text-cyan-500" 
                   />
                 </p>
-                <p className="text-xs text-gray-400">Proyek Bersama</p>
+                <p className="text-xl text-gray-400">Joint Project</p>
               </div>
               <div className="bg-[#1a2233] p-4 rounded-md text-center">
-                <p className="text-2xl font-bold text-blue-400">
-                  <NumberTicker
-                    value={1}
-                    className="whitespace-pre-wrap text-3xl font-medium tracking-tighter text-black dark:text-white"
-                  />
+                <p className="text-2xl font-bold  text-blue-400 dark:text-cyan-400">
+                ∞
                 </p>
-                <p className="text-xs text-gray-400">Mimpi & Harapan</p>
+                <p className="text-xl text-gray-400">Dreams & Hopes</p>
               </div>
             </div>
           </div>
@@ -109,7 +105,7 @@ export default function Footer() {
         {/* Social Media and Copyright */}
         <div className="mt-12 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            © 2025 Titik Kumoul Pemula Group. All Rights Reserved.
+            © 2025 Titik Kumpul Pemula Group. All Rights Reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0"></div>
         </div>

@@ -94,74 +94,80 @@ export function AnimatedTestimonialsDemo() {
 export function MemberList() {
   return (
     <>
-      <div>
-        <div>
-          <TextAnimate
-            by="character"
-            className="text-center text-5xl font-bold text-gray-200 dark:text-gray-300 line-clamp-3 sm:line-clamp-2"
-            variants={{
-              hidden: {
-                opacity: 0,
-                y: 20,
-                scale: 0.9,
-              },
-              show: (i) => ({
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: {
-                  delay: i * 0.02,
-                  duration: 0.3,
-                  y: {
-                    type: "spring",
-                    damping: 12,
-                    stiffness: 200,
+      <div id="members" className="scroll-mt-20 py-16">
+        <div className="container mx-auto px-4">
+          <div>
+            <div>
+              <TextAnimate
+                by="character"
+                className="text-center text-5xl font-bold text-gray-200 dark:text-gray-300 line-clamp-3 sm:line-clamp-2"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 20,
+                    scale: 0.9,
                   },
-                },
-              }),
-            }}
-          >
-            ABOUT US
-          </TextAnimate>
-        </div>
+                  show: (i) => ({
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      delay: i * 0.02,
+                      duration: 0.3,
+                      y: {
+                        type: "spring",
+                        damping: 12,
+                        stiffness: 200,
+                      },
+                    },
+                  }),
+                }}
+              >
+                ABOUT US
+              </TextAnimate>
+            </div>
 
-        <div>
-          <h1 className="text-3xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
-            We are a group of students who attend the same school, <br /> namely <Cover>SMKN 4 Payakumbuh</Cover> Majoring <Cover>PPLG</Cover>
-          </h1>
-        </div>
-        
-        <div className="mt-60">
-        <div>
-          <TextAnimate
-            by="character"
-            className="text-center text-5xl font-bold text-gray-200 dark:text-gray-300 line-clamp-3 sm:line-clamp-2"
-            variants={{
-              hidden: {
-                opacity: 0,
-                y: 20,
-                scale: 0.9,
-              },
-              show: (i) => ({
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: {
-                  delay: i * 0.02,
-                  duration: 0.3,
-                  y: {
-                    type: "spring",
-                    damping: 12,
-                    stiffness: 200,
-                  },
-                },
-              }),
-            }}
-          >
-            OUR MEMBER
-          </TextAnimate>
-        </div>
-          <AnimatedTestimonialsDemo />
+            <div>
+              <h1 className="text-3xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
+                We are a group of students who attend the same school, <br />{" "}
+                namely <Cover>SMKN 4 Payakumbuh</Cover> Majoring{" "}
+                <Cover>PPLG</Cover>
+              </h1>
+            </div>
+
+            <div className="mt-60">
+              <div>
+                <TextAnimate
+                  by="character"
+                  className="text-center text-5xl font-bold text-gray-200 dark:text-gray-300 line-clamp-3 sm:line-clamp-2"
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      y: 20,
+                      scale: 0.9,
+                    },
+                    show: (i) => ({
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        delay: i * 0.02,
+                        duration: 0.3,
+                        y: {
+                          type: "spring",
+                          damping: 12,
+                          stiffness: 200,
+                        },
+                      },
+                    }),
+                  }}
+                >
+                  OUR MEMBER
+                </TextAnimate>
+              </div>
+              <AnimatedTestimonialsDemo />
+            </div>
+          </div>
         </div>
       </div>
     </>

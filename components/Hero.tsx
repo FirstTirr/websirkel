@@ -220,158 +220,161 @@ const Hero = () => {
           padding: 0,
         }}
       />
+      <section id="home" className="scroll-mt-20 py-16">
+        <div>
+          {/* SmoothCursor should be a top-level component */}
+          <SmoothCursor />
 
-      {/* SmoothCursor should be a top-level component */}
-      <SmoothCursor />
+          <div className="relative flex flex-col items-center min-h-screen w-full max-w-full overflow-hidden text-center dark:text-white">
+            <div className="w-full pt-16 md:pt-20">
+              <h1 className="flex justify-center flex-wrap items-baseline text-5xl md:text-6xl font-bold text-white">
+                <span>
+                  <span className="text-blue-400">Titik</span> Kumpul
+                </span>
+                <RotatingText
+                  texts={["Pemula", "Programmer", "Wibu"]}
+                  mainClassName="px-2 sm:px-2 md:px-3 text-black dark:text-white overflow-hidden align-baseline py-0.5 sm:py-1 md:py-1 justify-center rounded-lg"
+                  staggerFrom={"last"}
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden align-baseline pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
+              </h1>
+            </div>
 
-      <div className="relative flex flex-col items-center min-h-screen w-full max-w-full overflow-hidden text-center dark:text-white">
-        <div className="w-full pt-16 md:pt-20">
-          <h1 className="flex justify-center flex-wrap items-baseline text-5xl md:text-6xl font-bold text-white">
-            <span>
-              <span className="text-blue-400">Titik</span> Kumpul
-            </span>
-            <RotatingText
-              texts={["Pemula", "Programmer", "Wibu"]}
-              mainClassName="px-2 sm:px-2 md:px-3 text-black dark:text-white overflow-hidden align-baseline py-0.5 sm:py-1 md:py-1 justify-center rounded-lg"
-              staggerFrom={"last"}
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-120%" }}
-              staggerDuration={0.025}
-              splitLevelClassName="overflow-hidden align-baseline pb-0.5 sm:pb-1 md:pb-1"
-              transition={{ type: "spring", damping: 30, stiffness: 400 }}
-              rotationInterval={2000}
-            />
-          </h1>
-        </div>
-
-        <div className="w-full px-4 sm:px-6 md:px-8 max-w-[100%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto mt-8">
-          <TextAnimate
-            by="character"
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-cyan-500 dark:text-cyan-400 line-clamp-3 sm:line-clamp-2"
-            variants={{
-              hidden: {
-                opacity: 0,
-                y: 20,
-                scale: 0.9,
-              },
-              show: (i) => ({
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: {
-                  delay: i * 0.02,
-                  duration: 0.3,
-                  y: {
-                    type: "spring",
-                    damping: 12,
-                    stiffness: 200,
+            <div className="w-full px-4 sm:px-6 md:px-8 max-w-[100%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto mt-8">
+              <TextAnimate
+                by="character"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-cyan-500 dark:text-cyan-400 line-clamp-3 sm:line-clamp-2"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 20,
+                    scale: 0.9,
                   },
-                },
-              }),
-            }}
-          >
-            A Group of Dedicated Teenagers Who Struggle to Sharpen Their Skills
-            in the Technological Era
-          </TextAnimate>
-        </div>
-
-        <ShimmerButton className="shadow-2xl mt-8 dark:bg-gray-800">
-          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-            About Us
-          </span>
-        </ShimmerButton>
-
-        {/* AnimatedTooltip with proper mobile padding */}
-        <div className="flex flex-row items-center justify-center mb-4 w-full mt-10 flex-wrap px-5 sm:px-6 md:px-8">
-          <AnimatedTooltip items={people} />
-        </div>
-
-        <div className="w-full flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-start px-4 lg:px-0 -mt-4 mb-8">
-          {/* ScratchToReveal container */}
-
-          {/* Carousel container */}
-          <div className="w-full lg:w-[50%] flex justify-center items-center lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 mt-8 lg:mt-48">
-            <div className="overflow-hidden max-w-3xl h-[calc(100vh-380px)] min-h-[300px]">
-              <Carousel slides={slideData} />
-            </div>
-          </div>
-
-          <div className="w-full lg:w-auto flex justify-center lg:justify-start items-center mb-16  lg:ml-80">
-            <div className="flex flex-col items-center">
-              <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">
-                Scratch For Our Logo👇
-              </p>
-              <ScratchToReveal
-                width={280}
-                height={280}
-                minScratchPercentage={70}
-                className="flex items-center justify-center overflow-hidden rounded-2xl border-2 bg-gray-100 shadow-lg"
-                gradientColors={["#A97CF8", "#F38CB8", "#FDCC92"]}
+                  show: (i) => ({
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      delay: i * 0.02,
+                      duration: 0.3,
+                      y: {
+                        type: "spring",
+                        damping: 12,
+                        stiffness: 200,
+                      },
+                    },
+                  }),
+                }}
               >
-                <p className="text-9xl">logo tkp</p>
-              </ScratchToReveal>
+                A Group of Dedicated Teenagers Who Struggle to Sharpen Their
+                Skills in the Technological Era
+              </TextAnimate>
             </div>
-          </div>
-          {/* maps */}
-          <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-50 -mt-11">
-            <div className="relative group cursor-pointer">
-              <PinContainer href="#">
-                <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-                  <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-                    TKP Location
-                  </h3>
-                  <div className="!m-0 !p-0 w-full h-[16rem] overflow-hidden rounded-lg relative">
-                    {/* Expand button - appears on hover */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setExpandedMap(true);
-                        }}
-                        className="px-4 py-2 bg-white/90 dark:bg-slate-800/90 rounded-full text-black dark:text-white text-sm font-medium transition-transform hover:scale-105 flex items-center gap-2"
-                      >
-                        <span>Expand</span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="15 3 21 3 21 9"></polyline>
-                          <polyline points="9 21 3 21 3 15"></polyline>
-                          <line x1="21" y1="3" x2="14" y2="10"></line>
-                          <line x1="3" y1="21" x2="10" y2="14"></line>
-                        </svg>
-                      </button>
-                    </div>
 
-                    <iframe
-                      src="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen={true}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="rounded-lg"
-                    ></iframe>
-                  </div>
-                  <div className="text-xs mt-2 text-center text-slate-300">
-                    PJ22+X3G, Tungka, Situjuah Limo Nagari, Lima Puluh Kota,
-                    West Sumatra
-                  </div>
+            <ShimmerButton className="shadow-2xl mt-8 dark:bg-gray-800">
+              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                About Us
+              </span>
+            </ShimmerButton>
+
+            {/* AnimatedTooltip with proper mobile padding */}
+            <div className="flex flex-row items-center justify-center mb-4 w-full mt-10 flex-wrap px-5 sm:px-6 md:px-8">
+              <AnimatedTooltip items={people} />
+            </div>
+
+            <div className="w-full flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-start px-4 lg:px-0 -mt-4 mb-8">
+              {/* ScratchToReveal container */}
+
+              {/* Carousel container */}
+              <div className="w-full lg:w-[50%] flex justify-center items-center lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 mt-8 lg:mt-48">
+                <div className="overflow-hidden max-w-3xl h-[calc(100vh-380px)] min-h-[300px]">
+                  <Carousel slides={slideData} />
                 </div>
-              </PinContainer>
+              </div>
+
+              <div className="w-full lg:w-auto flex justify-center lg:justify-start items-center mb-16  lg:ml-80">
+                <div className="flex flex-col items-center">
+                  <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">
+                    Scratch For Our Logo👇
+                  </p>
+                  <ScratchToReveal
+                    width={280}
+                    height={280}
+                    minScratchPercentage={70}
+                    className="flex items-center justify-center overflow-hidden rounded-2xl border-2 bg-gray-100 shadow-lg"
+                    gradientColors={["#A97CF8", "#F38CB8", "#FDCC92"]}
+                  >
+                    <p className="text-9xl">logo tkp</p>
+                  </ScratchToReveal>
+                </div>
+              </div>
+              {/* maps */}
+              <div className="hidden lg:flex h-[40rem] w-full items-center justify-center -mr-50 -mt-11">
+                <div className="relative group cursor-pointer">
+                  <PinContainer href="#">
+                    <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
+                      <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
+                        TKP Location
+                      </h3>
+                      <div className="!m-0 !p-0 w-full h-[16rem] overflow-hidden rounded-lg relative">
+                        {/* Expand button - appears on hover */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedMap(true);
+                            }}
+                            className="px-4 py-2 bg-white/90 dark:bg-slate-800/90 rounded-full text-black dark:text-white text-sm font-medium transition-transform hover:scale-105 flex items-center gap-2"
+                          >
+                            <span>Expand</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <polyline points="15 3 21 3 21 9"></polyline>
+                              <polyline points="9 21 3 21 3 15"></polyline>
+                              <line x1="21" y1="3" x2="14" y2="10"></line>
+                              <line x1="3" y1="21" x2="10" y2="14"></line>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <iframe
+                          src="https://maps.google.com/maps?q=PJ22%2BX3G%2C%20Tungka%2C%20Kec.%20Situjuah%20Limo%20Nagari%2C%20Kabupaten%20Lima%20Puluh%20Kota%2C%20Sumatera%20Barat%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen={true}
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          className="rounded-lg"
+                        ></iframe>
+                      </div>
+                      <div className="text-xs mt-2 text-center text-slate-300">
+                        PJ22+X3G, Tungka, Situjuah Limo Nagari, Lima Puluh Kota,
+                        West Sumatra
+                      </div>
+                    </div>
+                  </PinContainer>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Expanded map overlay */}
       <AnimatePresence>
