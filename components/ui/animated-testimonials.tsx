@@ -45,10 +45,6 @@ export const AnimatedTestimonials = ({
 
   return (
     <div className="w-full overflow-hidden px-2 py-12 sm:py-16 md:py-20 font-sans antialiased">
-      {/* Title with better responsive sizing */}
-      <h2 className="text-4xl sm:text-5xl font-bold mb-8 sm:mb-12 text-center text-gray-200 dark:text-gray-200 px-4">
-        OUR MEMBER
-      </h2>
 
       <div className="relative grid grid-cols-1 gap-8 sm:gap-12 md:gap-16 md:grid-cols-2 max-w-xs sm:max-w-lg md:max-w-4xl mx-auto">
         <div>
