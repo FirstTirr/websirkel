@@ -11,7 +11,7 @@ import Carousel from "./ui/carousel";
 import { AnimatePresence, motion } from "framer-motion";
 // Import Vanta
 import * as THREE from "three";
-import RINGS from "vanta/dist/vanta.rings.min";
+import NET from "vanta/dist/vanta.net.min";
 import { SmoothCursor } from "./magicui/smootCursor";
 
 const slideData = [
@@ -135,22 +135,18 @@ const Hero = () => {
   useEffect(() => {
     if (!vantaEffect && vantaRef.current) {
       setVantaEffect(
-        RINGS({
+        NET({
           el: vantaRef.current,
           THREE: THREE,
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: window.innerHeight,
-          minWidth: window.innerWidth,
+          minHeight: 200.0,
+          minWidth: 200.0,
           scale: 1.0,
           scaleMobile: 1.0,
+          color: 0x3fddff,
           backgroundColor: 0x0,
-          color: 0x3f83ff,
-          backgroundAlpha: 1,
-          maxDistance: 25.0,
-          size: 1.5,
-          waveHeight: 0.5, // Adjust this for visual appeal
         })
       );
     }
