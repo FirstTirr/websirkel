@@ -11,6 +11,7 @@ import Carousel from "./ui/carousel";
 import { AnimatePresence, motion } from "framer-motion";
 // Import Vanta
 import * as THREE from "three";
+// @ts-ignore
 import NET from "vanta/dist/vanta.net.min";
 import { SmoothCursor } from "./magicui/smootCursor";
 
@@ -130,6 +131,23 @@ const Hero = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const vantaRef = useRef<HTMLDivElement>(null);
   const [vantaEffect, setVantaEffect] = useState<any>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile on mount and when window resizes
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Check initially
+    checkIsMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkIsMobile);
+
+    // Clean up
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   // Initialize Vanta effect
   useEffect(() => {
@@ -218,8 +236,8 @@ const Hero = () => {
       />
       <section id="home" className="scroll-mt-20 py-16">
         <div>
-          {/* SmoothCursor should be a top-level component */}
-          <SmoothCursor />
+          {/* SmoothCursor only shown on non-mobile devices */}
+          {!isMobile && <SmoothCursor />}
 
           <div className="relative flex flex-col items-center min-h-screen w-full max-w-full overflow-hidden text-center dark:text-white">
             <div className="w-full pt-16 md:pt-20">
